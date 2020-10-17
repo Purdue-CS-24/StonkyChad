@@ -104,7 +104,11 @@ async def recs(ctx, arg):
     q3earn = q3e.json()
     q4earn = q4e.json()
 
+<<<<<<< Updated upstream
     currentc = currentinfo['c']
+=======
+    currentc = current.json()['c']
+>>>>>>> Stashed changes
 
     q1actual = q1earn['earningsCalendar'][0]['revenueActual']
     q1estimate = q1earn['earningsCalendar'][0]['revenueEstimate']
