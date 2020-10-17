@@ -6,8 +6,8 @@ bot = commands.Bot(command_prefix='!')
 
 client = discord.Client()
 
-@bot.command(name="analysis")
-async def _analysis(ctx, *, arg):
+@bot.command()
+async def analysis(ctx, *, arg):
     await ctx.send(arg)
 
 @client.event
