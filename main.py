@@ -1,7 +1,12 @@
 import discord
 import config
+import StockAnalyzer
 
 client = discord.Client()
+
+@client.command(name="analysis")
+async def _analysis(ctx, *, arg):
+    await ctx.send(arg)
 
 @client.event
 async def on_message(message):
