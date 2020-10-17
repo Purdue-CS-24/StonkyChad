@@ -3,6 +3,8 @@ import requests
 
 stocksymbol = input('What Share Do You Want To Analyze? (Make Sure Stock Symbol Is In All Caps)')
 
+stocksymbol.upper()
+
 # gets all current stock info as of last posted values
 current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + stocksymbol + '&token=bto4nln48v6v7atimad0')
 
@@ -34,6 +36,8 @@ q3e = requests.get('https://finnhub.io/api/v1/calendar/earnings?from=2020-07-01&
 # gets earnings for q4
 q4e = requests.get('https://finnhub.io/api/v1/calendar/earnings?from=2020-10-01&to=2020-12-31&symbol=' + stocksymbol + '&token=bto4nln48v6v7atimad0')
 
+recs = requests.get('https://finnhub.io/api/v1/stock/recommendation?symbol=' + stocksymbol + '&token=bto4nln48v6v7atimad0')
+
 # converts all request into readable information
 currentinfo = current.json()
 q1info = q1i.json()
@@ -46,17 +50,23 @@ q2earn = q2e.json()
 q3earn = q3e.json()
 q4earn = q4e.json()
 
-
+recommendations = recs.json()
 
 # gets avgs of 'c'
 currentc = currentinfo['c']
 q1cavg = statistics.mean(q1info['c'])
 q2cavg = statistics.mean(q2info['c'])
+q3cavg = statistics.mean(q3info['c'])
+q4cavg = statistics.mean(q4info['c'])
 
+# first 2 lines get the location, 3rd line gets the location you want
 q1actual = q1earn['earningsCalendar']
 q1a = q1actual[0]
-q1aa = q1a['revenueActual']
+q1aa = q1a['revenueEstimate']
 
-print(q1aa)
+
+print(recommendations)
+
+
 
 
