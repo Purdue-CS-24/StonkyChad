@@ -20,7 +20,7 @@ async def on_message(message):
 
      if message.content.startswith('!analysis'):
          msg = 'THIS BOT DONT WORK'
-         await message.channel.seng(msg)
+         await message.channel.send(msg)
 
 @bot.event
 async def on_ready():
