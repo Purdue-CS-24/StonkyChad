@@ -62,6 +62,77 @@ async def responsestatus(ctx, arg):
 async def eatmyASS(ctx):
     await ctx.send('i dont have a mouth')
 
+@bot.command()
+async def recs(ctx, arg):
+
+    current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+    q1i = requests.get(
+        'https://finnhub.io/api/v1/stock/candle?symbol=' + arg.upper() + '&resolution=1&from=1577836800&to=1585612800&token=bto4nln48v6v7atimad0')
+    q2i = requests.get(
+        'https://finnhub.io/api/v1/stock/candle?symbol=' + arg.upper() + '&resolution=1&from=1585699200&to=1593475200&token=bto4nln48v6v7atimad0')
+    q3i = requests.get(
+        'https://finnhub.io/api/v1/stock/candle?symbol=' + arg.upper() + '&resolution=1&from=1593561600&to=1601424000&token=bto4nln48v6v7atimad0')
+    q4i = requests.get(
+        'https://finnhub.io/api/v1/stock/candle?symbol=' + arg.upper() + '&resolution=1&from=1601510400&to=1609372800&token=bto4nln48v6v7atimad0')
+    q1e = requests.get(
+        'https://finnhub.io/api/v1/calendar/earnings?from=2020-01-01&to=2020-03-31&symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+    q2e = requests.get(
+        'https://finnhub.io/api/v1/calendar/earnings?from=2020-04-01&to=2020-06-30&symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+    q3e = requests.get(
+        'https://finnhub.io/api/v1/calendar/earnings?from=2020-07-01&to=2020-09-30&symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+    q4e = requests.get(
+        'https://finnhub.io/api/v1/calendar/earnings?from=2020-10-01&to=2020-12-31&symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+
+    currentinfo = current.json()
+    q1info = q1i.json()
+    q2info = q2i.json()
+    q3info = q3i.json()
+    q4info = q4i.json()
+    q1earn = q1e.json()
+    q2earn = q2e.json()
+    q3earn = q3e.json()
+    q4earn = q4e.json()
+
+    currentc = current['c']
+
+    q1actual = q1earn['earningsCalendar'][0]['revenueActual']
+    q1estimate = q1earn['earningsCalendar'][0]['revenueEstimate']
+
+    q2actual = q2earn['earningsCalendar'][0]['revenueActual']
+    q2estimate = q2earn['earningsCalendar'][0]['revenueEstimate']
+
+    q3actual = q3earn['earningsCalendar'][0]['revenueActual']
+    q3estimate = q3earn['earningsCalendar'][0]['revenueEstimate']
+
+    q4actual = q4earn['earningsCalendar'][0]['revenueActual']
+    q4estimate = q4earn['earningsCalendar'][0]['revenueEstimate']
+
+    q1epsactual = q1earn['earningsCalendar'][0]['epsActual']
+    q1epsestimate = q1earn['earningsCalendar'][0]['epsEstimate']
+
+    q2epsactual = q2earn['earningsCalendar'][0]['epsActual']
+    q2epsestimate = q2earn['earningsCalendar'][0]['epsEstimate']
+
+    q3epsactual = q3earn['earningsCalendar'][0]['epsActual']
+    q3epsestimate = q3earn['earningsCalendar'][0]['epsEstimate']
+
+    q4epsactual = q4earn['earningsCalendar'][0]['epsActual']
+    q4epsestimate = q4earn['earningsCalendar'][0]['epsEstimate']
+
+    epsactualavg = (q1epsactual + q2epsactual + q3epsactual + q4epsactual) / 4
+
+    peratio = currentc / epsactualavg
+
+    if peratio > 25:
+        print(arg.upper() + ' is currently overvalued ie. Strong Sell')
+    if 25 > peratio > 10:
+        print(arg.upper() + ' is currently fairly valued ie. Hold')
+    if peratio < 10:
+        print(arg.upper() + ' is currently undervalued ie. Strong Buy')
+
+
+
+
 
 @bot.event
 async def on_ready():

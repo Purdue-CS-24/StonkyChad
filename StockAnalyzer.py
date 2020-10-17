@@ -53,6 +53,8 @@ q4earn = q4e.json()
 
 recommendations = recs.json()
 
+currentc = currentinfo['c']
+
 # gets avgs of 'h'
 currenth = currentinfo['h']
 q1havg = statistics.mean(q1info['h'])
@@ -109,4 +111,27 @@ if havg < currentinfo['h']:
     print('current highs of ' + stocksymbol + ' are higher than the stock high of the past year')
 elif havg > currentinfo['h']:
     print('current highs of ' + stocksymbol + ' are lower than the stock high of the past year')
+
+q1epsactual = q1earn['earningsCalendar'][0]['epsActual']
+q1epsestimate = q1earn['earningsCalendar'][0]['epsEstimate']
+
+q2epsactual = q2earn['earningsCalendar'][0]['epsActual']
+q2epsestimate = q2earn['earningsCalendar'][0]['epsEstimate']
+
+q3epsactual = q3earn['earningsCalendar'][0]['epsActual']
+q3epsestimate = q3earn['earningsCalendar'][0]['epsEstimate']
+
+q4epsactual = q4earn['earningsCalendar'][0]['epsActual']
+q4epsestimate = q4earn['earningsCalendar'][0]['epsEstimate']
+
+epsactualavg = (q1epsactual + q2epsactual +q3epsactual + q4epsactual) / 4
+
+peratio = currentc / epsactualavg
+
+if peratio > 25:
+    print(stocksymbol + ' is currently overvalued ie. Strong Sell')
+if 25 > peratio > 10:
+    print(stocksymbol + ' is currently fairly valued ie. Hold')
+if peratio < 10:
+    print(stocksymbol + ' is currently undervalued ie. Strong Buy')
 
