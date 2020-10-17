@@ -3,6 +3,8 @@ import requests
 
 stocksymbol = input('What Share Do You Want To Analyze? (Make Sure Stock Symbol Is In All Caps)')
 
+stocksymbol.upper()
+
 # gets all current stock info as of last posted values
 current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + stocksymbol + '&token=bto4nln48v6v7atimad0')
 
@@ -57,8 +59,6 @@ q1actual = q1earn['earningsCalendar']
 q1a = q1actual[0]
 q1aa = q1a['revenueActual']
 
-print(q1aa)
 
-print(q1a)
 
 
