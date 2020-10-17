@@ -4,13 +4,11 @@ from discord.ext import commands
 
 bot = commands.Bot(command_prefix='!')
 
-client = discord.Client()
-
 @bot.command()
 async def analysis(ctx, *, arg):
     await ctx.send(arg)
 
-@client.event
+@bot.event
 async def on_message(message):
     # we do not want the bot to reply to itself
     if message.author == client.user:
@@ -19,16 +17,12 @@ async def on_message(message):
     if message.content.startswith('!hello'):
         msg = 'Hello {0.author.mention}'.format(message)
         await message.channel.send(msg)
-        
-    if message.content.startswith('!analysis'):
-        msg = 'THIS BOT DONT WORK'
-        await message.channel.seng(msg)
 
-    if message.content.startswith('!eat my ass out and call me raqueem'):
-        msg = 'yes my lord {0.author.mention}'.format(message)
-        await message.channel.send(msg)
+    # if message.content.startswith('!analysis'):
+    #     msg = 'THIS BOT DONT WORK'
+    #     await message.channel.seng(msg)
 
-@client.event
+@bot.event
 async def on_ready():
     print('Logged in as')
     print(client.user.name)
