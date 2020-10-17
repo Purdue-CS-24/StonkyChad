@@ -59,4 +59,6 @@ q1aa = q1a['revenueActual']
 
 print(q1aa)
 
+print(q1a)
+
 
