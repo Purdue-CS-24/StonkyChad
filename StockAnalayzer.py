@@ -3,7 +3,7 @@ import requests
 
 stocksymbol = input('What Share Do You Want To Analyze? (Make Sure Stock Symbol Is In All Caps)')
 
-stocksymbol.upper()
+stocksymbol = stocksymbol.upper()
 
 # gets all current stock info as of last posted values
 current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + stocksymbol + '&token=bto4nln48v6v7atimad0')
@@ -62,12 +62,16 @@ q2havg = statistics.mean(q2info['h'])
 q3havg = statistics.mean(q3info['h'])
 q4havg = statistics.mean(q4info['h'])
 
+havg = (q1havg + q2havg + q3havg + q4havg) / 4
+
 # gets avgs of 'l'
 currentl = currentinfo['l']
 q1lavg = statistics.mean(q1info['l'])
 q2lavg = statistics.mean(q2info['l'])
 q3lavg = statistics.mean(q3info['l'])
 q4lavg = statistics.mean(q4info['l'])
+
+lavg = (q1lavg + q2lavg + q3lavg + q4lavg) / 4
 
 
 # gets actual and estimated revenues for each quarter
