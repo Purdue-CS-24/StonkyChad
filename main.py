@@ -20,6 +20,10 @@ async def on_message(message):
         msg = 'Hello {0.author.mention}'.format(message)
         await message.channel.send(msg)
 
+    if message.content.startswith('!eat my ass out and call me raqueem'):
+        msg = 'yes my lord {0.author.mention'.format(message)
+        await message.channel.send(msg)
+
 @client.event
 async def on_ready():
     print('Logged in as')
