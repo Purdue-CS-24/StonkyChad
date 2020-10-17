@@ -104,7 +104,7 @@ async def recs(ctx, arg):
     q3earn = q3e.json()
     q4earn = q4e.json()
     
-    currentc = current.json()['c']
+    currentc = current.json()['c']\
 
     q1actual = q1earn['earningsCalendar'][0]['revenueActual']
     q1estimate = q1earn['earningsCalendar'][0]['revenueEstimate']
