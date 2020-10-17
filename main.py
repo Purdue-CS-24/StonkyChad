@@ -1,6 +1,7 @@
 import discord
+import config
 
-TOKEN = 'NzY3MDY4Mzc4NTIzMTA3MzQ5.X4siGA.CmXw2BsPIqIbMbCMWXtlYqHIGm0'
+TOKEN = 'NzY3MDY4Mzc4NTIzMTA3MzQ5.X4siGA.Ol5T6bOyClBjlLUz4_-R2MtNDSg'
 
 client = discord.Client()
 
@@ -21,4 +22,4 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-client.run(TOKEN)
+client.run(config.token)
