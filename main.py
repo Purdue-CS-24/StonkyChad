@@ -10,14 +10,12 @@ bot = commands.Bot(command_prefix='!')
 async def stockprofile(ctx, *, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
 
-    displaymsg = ":moneybag: The current Price of" + arg.upper() + " is $" + str(current.json()['c']) + "\n" + \
-                 ":moneybag: The high price of " + arg.upper() + " was $" + str(current.json()['h']) + "\n" + \
-                 ":moneybag: The low price of " + arg.upper() + " was $" + str(current.json()['l']) + "\n" + \
-                 ":moneybag: The open price of " + arg.upper() + " is $" + str(current.json()['o']) + "\n" + \
-                 ":moneybag: The previous closing price of " + arg.upper() + " was $" + str(current.json()['pc']) + "\n" + \
-                 ":bar_chart: The volume data of " + arg.upper() + " is " + str(current.json()['v']) + "\n" + \
-                 ":clock3: The time stamp of " + arg.upper() + " is " + str(current.json()['t']) + "\n" + \
-                 ":bangbang: The request status of " + arg.upper() + " is " + str(current.json()['s']) + "\n"
+    displaymsg = "The current Price of" + arg.upper() + " is $" + str(current.json()['c']) + "\n" + \
+                 "The high price of " + arg.upper() + " was $" + str(current.json()['h']) + "\n" + \
+                 "The low price of " + arg.upper() + " was $" + str(current.json()['l']) + "\n" + \
+                 "The open price of " + arg.upper() + " is $" + str(current.json()['o']) + "\n" + \
+                 "The previous closing price of " + arg.upper() + " was $" + str(current.json()['pc']) + "\n" + \
+                 "The time stamp of " + arg.upper() + " is " + str(current.json()['t'])
 
     await ctx.send(displaymsg)
 
