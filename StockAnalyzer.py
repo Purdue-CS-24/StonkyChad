@@ -39,7 +39,6 @@ q4e = requests.get('https://finnhub.io/api/v1/calendar/earnings?from=2020-10-01&
 # gets recommendations for stock
 recs = requests.get('https://finnhub.io/api/v1/stock/recommendation?symbol=' + stocksymbol + '&token=bto4nln48v6v7atimad0')
 
-
 # converts all request into readable information
 currentinfo = current.json()
 q1info = q1i.json()
@@ -72,7 +71,6 @@ q4lavg = statistics.mean(q4info['l'])
 
 lavg = (q1lavg + q2lavg + q3lavg + q4lavg) / 4
 
-
 # gets actual and estimated revenues for each quarter
 q1actual = q1earn['earningsCalendar'][0]['revenueActual']
 q1estimate = q1earn['earningsCalendar'][0]['revenueEstimate']
@@ -86,4 +84,19 @@ q3estimate = q3earn['earningsCalendar'][0]['revenueEstimate']
 q4actual = q4earn['earningsCalendar'][0]['revenueActual']
 q4estimate = q4earn['earningsCalendar'][0]['revenueEstimate']
 
-print('average high for q1 for ' + stocksymbol + str(q1havg))
+if q1actual > q1estimate:
+    print(stocksymbol + ' did better than expected for q1')
+elif q1actual < q1estimate:
+    print(stocksymbol + ' did worse than expected for q1')
+if q2actual > q2estimate:
+    print(stocksymbol + ' did better than expected for q2')
+elif q2actual < q2estimate:
+    print(stocksymbol + ' did worse than expected for q2')
+if q3actual > q3estimate:
+    print(stocksymbol + ' did better than expected for q3')
+elif q3actual < q3estimate:
+    print(stocksymbol + ' did worse than expected for q3')
+if q4actual > q4estimate:
+    print(stocksymbol + ' did better than expected for q4')
+elif q4actual < q4estimate:
+    print(stocksymbol + ' did worse than expected for q4')
