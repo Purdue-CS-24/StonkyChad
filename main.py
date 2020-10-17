@@ -30,6 +30,26 @@ async def stockprofile(ctx, *, arg):
 
 
 @bot.command()
+async def companyprofile(ctx, *, arg):
+    profile = requests.get(
+        'https://finnhub.io/api/v1//stock/profile2?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+
+    displaymsg = "The name of the company of " + arg.upper() + " is " + str(profile.json()['name']) + "\n" + \
+                 "The country of company's headquarter is " + str(profile.json()['country']) + "\n" + \
+                 "The currency used in company filings is " + str(profile.json()['currency']) + "\n" + \
+                 "The listed exchange is " + str(profile.json()['exchange']) + "\n" + \
+                 "The company symbol/ticker as used on the listed exchange is " + str(profile.json()['ticker']) + "\n" + \
+                 "The IPO date of the company is " + str(profile.json()['ipo']) + "\n" + \
+                 "The market capitalization of the company is " + str(profile.json()['marketCapitalization']) + "\n" + \
+                 "The number of outstanding shares of the company is " + str(
+        profile.json()['shareOutstanding']) + "\n" + \
+                 "The company phone number is " + str(profile.json()['phone']) + "\n" + \
+                 "The company website is " + str(profile.json()['weburl']) + "\n" + \
+                 "The industry classification of the company is " + str(profile.json()['finnhubIndustry']) + "\n"
+
+    await ctx.send(displaymsg)
+
+@bot.command()
 async def lowprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(current.json()['l']))
