@@ -1,12 +1,15 @@
 import discord
 import config
 from discord.ext import commands
+import statistics
+import requests
 
 bot = commands.Bot(command_prefix='!')
 
 @bot.command()
 async def analysis(ctx, *, arg):
-    await ctx.send(arg)
+    current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+    await ctx.send(current.json())
 
 @bot.command()
 async def eatmyASS(ctx):
