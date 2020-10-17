@@ -18,9 +18,9 @@ async def on_message(message):
         msg = 'Hello {0.author.mention}'.format(message)
         await message.channel.send(msg)
 
-    # if message.content.startswith('!analysis'):
-    #     msg = 'THIS BOT DONT WORK'
-    #     await message.channel.seng(msg)
+     if message.content.startswith('!analysis'):
+         msg = 'THIS BOT DONT WORK'
+         await message.channel.seng(msg)
 
 @bot.event
 async def on_ready():
