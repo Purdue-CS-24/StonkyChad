@@ -3,6 +3,8 @@ import config
 from discord.ext import commands
 import statistics
 import requests
+import time
+from datetime import datetime
 
 bot = commands.Bot(command_prefix='!')
 
@@ -10,12 +12,15 @@ bot = commands.Bot(command_prefix='!')
 async def stockprofile(ctx, *, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
 
-    displaymsg = "The current Price of" + arg.upper() + " is $" + str(current.json()['c']) + "\n" + \
-                 "The high price of " + arg.upper() + " was $" + str(current.json()['h']) + "\n" + \
-                 "The low price of " + arg.upper() + " was $" + str(current.json()['l']) + "\n" + \
-                 "The open price of " + arg.upper() + " is $" + str(current.json()['o']) + "\n" + \
-                 "The previous closing price of " + arg.upper() + " was $" + str(current.json()['pc']) + "\n" + \
-                 "The time stamp of " + arg.upper() + " is " + str(current.json()['t'])
+    displaymsg = "- The current Price of" + arg.upper() + " is $" + str(current.json()['c']) + "\n" + \
+                 "- The high price of " + arg.upper() + " was $" + str(current.json()['h']) + "\n" + \
+                 "- The low price of " + arg.upper() + " was $" + str(current.json()['l']) + "\n" + \
+                 "- The open price of " + arg.upper() + " is $" + str(current.json()['o']) + "\n" + \
+                 "- The previous closing price of " + arg.upper() + " was $" + str(current.json()['pc']) + "\n" + \
+                 "- The volume data of " + arg.upper() + " is " + str(current.json()['v']) + "\n" + \
+                 "- The time stamp of " + arg.upper() + " is " + \
+                 datetime.utcfromtimestamp(int(current.json()['t'])).strftime('%Y-%m-%d %H:%M:%S') + "\n" + \
+                 "- The request status of " + arg.upper() + " is " + str(current.json()['s']) + "\n"
 
     await ctx.send(displaymsg)
 
@@ -27,7 +32,6 @@ async def stockprofile(ctx, *, arg):
     # await ctx.send(":bar_chart: The volume data of " + arg.upper() + " is " + str(current.json()['v']))
     # await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " + str(current.json()['t']))
     # await ctx.send(":bangbang: The request status of " + arg.upper() + " is " + str(current.json()['s']))
-
 
 @bot.command()
 async def lowprice(ctx, arg):
@@ -62,7 +66,8 @@ async def volumedata(ctx, arg):
 @bot.command()
 async def timestamp(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " + str(current.json()['t']))
+    await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " +
+                   datetime.utcfromtimestamp(int(current.json()['t'])).strftime('%Y-%m-%d %H:%M:%S'))
 
 @bot.command()
 async def responsestatus(ctx, arg):
@@ -73,9 +78,9 @@ async def responsestatus(ctx, arg):
 async def eatmyASS(ctx):
     await ctx.send('i dont have a mouth')
 
+
 @bot.command()
 async def recs(ctx, arg):
-
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     q1i = requests.get(
         'https://finnhub.io/api/v1/stock/candle?symbol=' + arg.upper() + '&resolution=1&from=1577836800&to=1585612800&token=bto4nln48v6v7atimad0')
@@ -103,8 +108,8 @@ async def recs(ctx, arg):
     q2earn = q2e.json()
     q3earn = q3e.json()
     q4earn = q4e.json()
-    
-    currentc = current.json()['c']\
+
+    currentc = current.json()['c']
 
     q1actual = q1earn['earningsCalendar'][0]['revenueActual']
     q1estimate = q1earn['earningsCalendar'][0]['revenueEstimate']
@@ -145,11 +150,13 @@ async def recs(ctx, arg):
     if 10 > peratio:
         await ctx.send(arg.upper() + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
 
+
 @bot.event
 async def on_ready():
     print('Logged in as')
     print(bot.user.name)
     print(bot.user.id)
     print('------')
+
 
 bot.run(config.token)
