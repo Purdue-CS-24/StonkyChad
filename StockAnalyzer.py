@@ -124,14 +124,18 @@ q3epsestimate = q3earn['earningsCalendar'][0]['epsEstimate']
 q4epsactual = q4earn['earningsCalendar'][0]['epsActual']
 q4epsestimate = q4earn['earningsCalendar'][0]['epsEstimate']
 
-epsactualavg = (q1epsactual + q2epsactual +q3epsactual + q4epsactual) / 4
+epsactualavg = (q1epsactual + q2epsactual + q3epsactual + q4epsactual) / 3
 
 peratio = currentc / epsactualavg
 
 if peratio > 25:
-    print(stocksymbol + ' is currently overvalued ie. Strong Sell')
-if 25 > peratio > 10:
-    print(stocksymbol + ' is currently fairly valued ie. Hold')
-if peratio < 10:
-    print(stocksymbol + ' is currently undervalued ie. Strong Buy')
+    print(stocksymbol + ' is currently VERY overvalued ie. STRONG SELL :muscle:')
+if 25 > peratio > 20:
+    print(stocksymbol + ' is currently overvalued ie. SELL :chart_with_downwards_trend:')
+if 20 > peratio > 15:
+    print(stocksymbol + ' is currently fairly valued ie. HOLD :pause_button:')
+if 15 > peratio > 10:
+    print(stocksymbol + ' is currently undervalued ie. BUY ::chart_with_upwards_trend:')
+if 10 > peratio:
+    print(stocksymbol + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
 
