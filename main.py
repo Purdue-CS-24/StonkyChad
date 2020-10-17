@@ -124,11 +124,11 @@ async def recs(ctx, arg):
     peratio = currentc / epsactualavg
 
     if peratio > 25:
-        print(arg.upper() + ' is currently overvalued ie. Strong Sell')
+        await ctx.send(arg.upper() + ' is currently overvalued ie. Strong Sell')
     if 25 > peratio > 10:
-        print(arg.upper() + ' is currently fairly valued ie. Hold')
+        await ctx.send(arg.upper() + ' is currently fairly valued ie. Hold')
     if peratio < 10:
-        print(arg.upper() + ' is currently undervalued ie. Strong Buy')
+        await ctx.send(arg.upper() + ' is currently undervalued ie. Strong Buy')
 
 
 
