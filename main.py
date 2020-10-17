@@ -20,14 +20,14 @@ async def stockprofile(ctx, *, arg):
 @bot.command()
 async def lowprice(ctx, *, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    currentc = current.json()['l']
-    await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(currentc))
+    currentl = current.json()['l']
+    await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(currentl))
 
 @bot.command()
 async def openprice(ctx, *, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    currentc = current.json()['o']
-    await ctx.send(':moneybag: The open price of ' + arg.upper() + ' is $' + str(currentc))
+    currento = current.json()['o']
+    await ctx.send(':moneybag: The open price of ' + arg.upper() + ' is $' + str(currento))
 
 @bot.command()
 async def previousclose(ctx, arg):
