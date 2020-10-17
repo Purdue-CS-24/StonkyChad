@@ -1,8 +1,6 @@
 import discord
 import config
 
-TOKEN = 'NzY3MDY4Mzc4NTIzMTA3MzQ5.X4siGA.Ol5T6bOyClBjlLUz4_-R2MtNDSg'
-
 client = discord.Client()
 
 @client.event
