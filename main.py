@@ -1,6 +1,6 @@
-from discord.ext import commands
+import discord
 import config
-import StockAnalyzer
+from discord.ext import commands
 
 bot = commands.Bot(command_prefix='!')
 
@@ -19,6 +19,10 @@ async def on_message(message):
     if message.content.startswith('!hello'):
         msg = 'Hello {0.author.mention}'.format(message)
         await message.channel.send(msg)
+        
+    if message.content.startswith('!analysis'):
+        msg = 'THIS BOT DONT WORK'
+        await message.channel.seng(msg)
 
     if message.content.startswith('!eat my ass out and call me raqueem'):
         msg = 'yes my lord {0.author.mention'.format(message)
