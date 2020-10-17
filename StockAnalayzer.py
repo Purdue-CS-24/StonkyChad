@@ -57,6 +57,7 @@ currentc = currentinfo['c']
 q1cavg = statistics.mean(q1info['c'])
 q2cavg = statistics.mean(q2info['c'])
 
+# first 2 lines get the location, 3rd line gets the location you want
 q1actual = q1earn['earningsCalendar']
 q1a = q1actual[0]
 q1aa = q1a['revenueActual']
