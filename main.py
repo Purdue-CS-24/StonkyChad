@@ -33,6 +33,12 @@ async def openprice(ctx, *, arg):
 async def previousclose(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(":moneybag: The previous closing price of " + arg.upper() + " was $" + str(current.json()['pc']))
+    
+@bot.command()
+async def currentprice(ctx, arg):
+    current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+    currentc = current.json()['c']
+    await ctx.send(':moneybag: The current Price of ' + arg.upper() + ' is $' + str(currentc))
 
 
 @bot.command()
