@@ -54,7 +54,6 @@ q4earn = q4e.json()
 
 recommendations = recs.json()
 
-
 # gets avgs of 'h'
 currenth = currentinfo['h']
 q1havg = statistics.mean(q1info['h'])
@@ -87,3 +86,4 @@ q3estimate = q3earn['earningsCalendar'][0]['revenueEstimate']
 q4actual = q4earn['earningsCalendar'][0]['revenueActual']
 q4estimate = q4earn['earningsCalendar'][0]['revenueEstimate']
 
+print('average high for q1 for ' + stocksymbol + str(q1havg))

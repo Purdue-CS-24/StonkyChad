@@ -9,7 +9,8 @@ bot = commands.Bot(command_prefix='!')
 @bot.command()
 async def analysis(ctx, *, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    await ctx.send(current.json())
+    currentc = current.json()['c']
+    await ctx.send(currentc)
 
 @bot.command()
 async def eatmyASS(ctx):
