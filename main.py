@@ -25,7 +25,7 @@ async def on_message(message):
         await message.channel.seng(msg)
 
     if message.content.startswith('!eat my ass out and call me raqueem'):
-        msg = 'yes my lord {0.author.mention'.format(message)
+        msg = 'yes my lord {0.author.mention}'.format(message)
         await message.channel.send(msg)
 
 @client.event
