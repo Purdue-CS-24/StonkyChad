@@ -36,6 +36,7 @@ q3e = requests.get('https://finnhub.io/api/v1/calendar/earnings?from=2020-07-01&
 # gets earnings for q4
 q4e = requests.get('https://finnhub.io/api/v1/calendar/earnings?from=2020-10-01&to=2020-12-31&symbol=' + stocksymbol + '&token=bto4nln48v6v7atimad0')
 
+# gets recommendations for stock
 recs = requests.get('https://finnhub.io/api/v1/stock/recommendation?symbol=' + stocksymbol + '&token=bto4nln48v6v7atimad0')
 
 # converts all request into readable information
@@ -59,14 +60,14 @@ q2cavg = statistics.mean(q2info['c'])
 q3cavg = statistics.mean(q3info['c'])
 q4cavg = statistics.mean(q4info['c'])
 
-# first 2 lines get the location, 3rd line gets the location you want
-q1actual = q1earn['earningsCalendar']
-q1a = q1actual[0]
-q1aa = q1a['revenueEstimate']
-
-
-print(recommendations)
-
-
+# gets actual and estimated revenues for each quarter
+q1actual = q1earn['earningsCalendar'][0]['revenueActual']
+q1estimate = q1earn['earningsCalendar'][0]['revenueEstimate']
+q2actual = q2earn['earningsCalendar'][0]['revenueActual']
+q2estimate = q2earn['earningsCalendar'][0]['revenueEstimate']
+q3actual = q3earn['earningsCalendar'][0]['revenueActual']
+q3estimate = q3earn['earningsCalendar'][0]['revenueEstimate']
+q4actual = q4earn['earningsCalendar'][0]['revenueActual']
+q4estimate = q4earn['earningsCalendar'][0]['revenueEstimate']
 
 
