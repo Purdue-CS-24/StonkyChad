@@ -100,3 +100,13 @@ if q4actual > q4estimate:
     print(stocksymbol + ' did better than expected for q4')
 elif q4actual < q4estimate:
     print(stocksymbol + ' did worse than expected for q4')
+
+if lavg < currentinfo['l']:
+    print('current lows of ' + stocksymbol + ' are higher than the stock low of the past year')
+elif lavg > currentinfo['l']:
+    print('current lows of ' + stocksymbol + ' are lower than the stock low of the past year')
+if havg < currentinfo['h']:
+    print('current highs of ' + stocksymbol + ' are higher than the stock high of the past year')
+elif havg > currentinfo['h']:
+    print('current highs of ' + stocksymbol + ' are lower than the stock high of the past year')
+

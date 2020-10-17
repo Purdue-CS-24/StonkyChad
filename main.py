@@ -11,10 +11,10 @@ async def stockprofile(ctx, *, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     currentc = current.json()['c']
     await ctx.send(':moneybag: The current Price of ' + arg.upper() + ' is $' + str(currentc))
-    currentc = current.json()['l']
-    await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(currentc))
-    currentc = current.json()['o']
-    await ctx.send(':moneybag: The open price of ' + arg.upper() + ' is $' + str(currentc))
+    currentl = current.json()['l']
+    await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(currentl))
+    currento = current.json()['o']
+    await ctx.send(':moneybag: The open price of ' + arg.upper() + ' is $' + str(currento))
     await ctx.send(":moneybag: The previous closing price of " + arg.upper() + " was $" + str(current.json()['pc']))
 
 @bot.command()
