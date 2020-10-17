@@ -8,6 +8,11 @@ bot = commands.Bot(command_prefix='!')
 async def analysis(ctx, *, arg):
     await ctx.send(arg)
 
+@bot.command()
+async def eatmyASS(ctx):
+    await ctx.send('i dont have a mouth')
+
+
 @bot.event
 async def on_message(message):
     # we do not want the bot to reply to itself
@@ -29,4 +34,4 @@ async def on_ready():
     print(client.user.id)
     print('------')
 
-client.run(config.token)
+bot.run(config.token)
