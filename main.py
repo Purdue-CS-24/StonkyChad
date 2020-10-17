@@ -124,15 +124,15 @@ async def recs(ctx, arg):
     peratio = currentc / epsactualavg
 
     if peratio > 25:
-        await ctx.send(arg.upper() + ' is currently overvalued ie. Strong Sell')
-    if 25 > peratio > 10:
-        await ctx.send(arg.upper() + ' is currently fairly valued ie. Hold')
-    if peratio < 10:
-        await ctx.send(arg.upper() + ' is currently undervalued ie. Strong Buy')
-
-
-
-
+        await ctx.send(arg.upper() + ' is currently VERY overvalued ie. STRONG SELL :muscle:')
+    if 25 > peratio > 20:
+        await ctx.send(arg.upper() + ' is currently overvalued ie. SELL')
+    if 20 > peratio > 15:
+        await ctx.send(arg.upper() + ' is currently fairly valued ie. HOLD')
+    if 15 > peratio > 10:
+        await ctx.send(arg.upper() + ' is currently undervalued ie. BUY')
+    if 10 > peratio:
+        await ctx.send(arg.upper() + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
 
 @bot.event
 async def on_ready():
