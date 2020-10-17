@@ -139,11 +139,11 @@ async def recs(ctx, arg):
     if peratio > 25:
         await ctx.send(arg.upper() + ' is currently VERY overvalued ie. STRONG SELL :muscle:')
     if 25 > peratio > 20:
-        await ctx.send(arg.upper() + ' is currently overvalued ie. SELL')
+        await ctx.send(arg.upper() + ' is currently overvalued ie. SELL :chart_with_downwards_trend:')
     if 20 > peratio > 15:
-        await ctx.send(arg.upper() + ' is currently fairly valued ie. HOLD')
+        await ctx.send(arg.upper() + ' is currently fairly valued ie. HOLD :pause_button:')
     if 15 > peratio > 10:
-        await ctx.send(arg.upper() + ' is currently undervalued ie. BUY')
+        await ctx.send(arg.upper() + ' is currently undervalued ie. BUY ::chart_with_upwards_trend:')
     if 10 > peratio:
         await ctx.send(arg.upper() + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
 
