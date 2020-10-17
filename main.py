@@ -1,10 +1,12 @@
-import discord
+from discord.ext import commands
 import config
 import StockAnalyzer
 
+bot = commands.Bot(command_prefix='!')
+
 client = discord.Client()
 
-@client.command(name="analysis")
+@bot.command(name="analysis")
 async def _analysis(ctx, *, arg):
     await ctx.send(arg)
 
