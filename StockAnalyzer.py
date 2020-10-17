@@ -87,6 +87,3 @@ q3estimate = q3earn['earningsCalendar'][0]['revenueEstimate']
 q4actual = q4earn['earningsCalendar'][0]['revenueActual']
 q4estimate = q4earn['earningsCalendar'][0]['revenueEstimate']
 
-
-
-
