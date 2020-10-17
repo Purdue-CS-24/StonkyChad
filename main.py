@@ -13,7 +13,7 @@ async def stockprofile(ctx, *, arg):
     await ctx.send(current.json())
 
     currentc = current.json()['c']
-    await ctx.send('Current Price of ' + arg + ': $' + currentc)
+    await ctx.send(':money_with_wings: The current price of ' + arg + 'is $' + currentc)
 
 @bot.command()
 async def lowprice(ctx, *, arg):
@@ -22,7 +22,7 @@ async def lowprice(ctx, *, arg):
     await ctx.send(current.json())
 
     currentc = current.json()['l']
-    await ctx.send('Low Price of ' + arg + ': $' + currentc)
+    await ctx.send(':money_with_wings: The low price of ' + arg + 'is $' + currentc)
 
 @bot.command()
 async def openprice(ctx, *, arg):
@@ -31,7 +31,7 @@ async def openprice(ctx, *, arg):
     await ctx.send(current.json())
 
     currentc = current.json()['o']
-    await ctx.send('Open Price of ' + arg + ': $' + currentc)
+    await ctx.send(':money_with_wings: The opening price of ' + arg + 'is $' + currentc)
 
 @bot.command()
 async def eatmyASS(ctx):
