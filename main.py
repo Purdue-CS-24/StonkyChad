@@ -11,6 +11,7 @@ async def analysis(ctx, *, arg):
 @bot.command()
 async def eatmyASS(ctx):
     await ctx.send('i dont have a mouth')
+<<<<<<< HEAD
 
 
 @bot.event
@@ -27,11 +28,14 @@ async def on_message(message):
          msg = 'THIS BOT DONT WORK'
          await message.channel.send(msg)
 
+=======
+
+>>>>>>> main
 @bot.event
 async def on_ready():
     print('Logged in as')
-    print(client.user.name)
-    print(client.user.id)
+    print(bot.user.name)
+    print(bot.user.id)
     print('------')
 
 bot.run(config.token)
