@@ -18,20 +18,10 @@ async def stockprofile(ctx, *, arg):
                  "Low Price: " + arg.upper() + " was $" + str(current.json()['l']) + "\n" + \
                  "Open Price: " + arg.upper() + " is $" + str(current.json()['o']) + "\n" + \
                  "Previous Closing Price: " + arg.upper() + " was $" + str(current.json()['pc']) + "\n" + \
-                 "Time Stamp: " + arg.upper() + " is " + \
-                 datetime.utcfromtimestamp(current.json()['t']).strftime('%Y-%m-%d %H:%M:%S') + " in Universal Time\n"
+                 arg.upper() + "'s Time Stamp(Universal Time): " + \
+                 datetime.utcfromtimestamp(current.json()['t']).strftime('%Y-%m-%d %H:%M:%S') + "\n"
 
     await ctx.send(displaymsg)
-
-    # await ctx.send(':moneybag: The current Price of ' + arg.upper() + ' is $' + str(current.json()['c']))
-    # await ctx.send(":moneybag: The high price of " + arg.upper() + " was $" + str(current.json()['h']))
-    # await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(current.json()['l']))
-    # await ctx.send(':moneybag: The open price of ' + arg.upper() + ' is $' + str(current.json()['o']))
-    # await ctx.send(":moneybag: The previous closing price of " + arg.upper() + " was $" + str(current.json()['pc']))
-    # await ctx.send(":bar_chart: The volume data of " + arg.upper() + " is " + str(current.json()['v']))
-    # await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " + str(current.json()['t']))
-    # await ctx.send(":bangbang: The request status of " + arg.upper() + " is " + str(current.json()['s']))
-
 
 @bot.command()
 async def profile(ctx, *, arg):
@@ -44,7 +34,7 @@ async def profile(ctx, *, arg):
                  "Currency: " + str(profile.json()['currency']) + "\n" + \
                  "Exchange: " + str(profile.json()['exchange']) + "\n" + \
                  "Symbol/Ticker: " + str(profile.json()['ticker']) + "\n" + \
-                 "IPO " + str(profile.json()['ipo']) + "\n" + \
+                 "IPO: " + str(profile.json()['ipo']) + "\n" + \
                  "Market Capitalization: " + str(profile.json()['marketCapitalization']) + "\n" + \
                  "Number of Shares: " + str(
         profile.json()['shareOutstanding']) + "\n" + \
@@ -67,6 +57,39 @@ async def news(ctx, *, arg):
         if index == limit:
             break
         await ctx.send(displaymsg)
+
+@bot.command()
+async def help(ctx):
+    displaymsg = "```**Welcome to the home of **Stonky Chad**! We created a bot that when given a stock symbol " \
+                 "(e.g googl/GOOGL for Google, amzn/AMZN for Amazon, etc.), would give information such as quotes, " \
+                 "recommendations, and profile. Commands are listed below:** \n\n" \
+                 "__**Requires an input (a stock symbol, e.g. GOOGL or AMZN and is case insensitive meaning googl is** __" \
+                 "__**okay**__):\n"\
+                "***!stockprofile***: gives a profile of the stock symbol including current, high, low, open, " \
+                 "and previous closing price at the current time.\n" \
+                 "***!profile***: gives a profile of the company that owns the shares, i.e. name, HQ, etc.\n" \
+                 "***!news***: pulls the first 5 articles from the past day about the given stock \n" \
+                 "***!lowprice***:  gives lowest price of the day\n" \
+                 "***!openprice***: gives open price of the day\n" \
+                 "***!previousclose***: gives previous closing price of the day\n" \
+                 "***!currentprice***: gives current price\n" \
+                 "***!highprice***: gives highest price of the day\n" \
+                 "***!timestamp***: gives current time in universal time\n" \
+                 "***!recs***: determines whether a stock is over- or undervalued, and recommends whether or not " \
+                 "it is a good idea to buy or sell the stock\n\n" \
+                 "__**Does not require an input and are commands we made when we were malding/bored:**__\n" \
+                 "***!eatmyASS***\n" \
+                 "***!daddychill***\n" \
+                 "***!fatyoshi***\n" \
+                 "***!sadge***\n" \
+                 "***!devs***```"
+    await ctx.send(displaymsg)
+
+@bot.command()
+async def devs(ctx):
+    displaymsg = "Stonky Chad Bot was birthed by Ananya Singh, Dorothy Luo, Ethan Su, and Vidhi Singh. " \
+                 "Please use this bot only for personal purposes."
+    await ctx.send(displaymsg)
 
 @bot.command()
 async def sadge(ctx):
@@ -106,20 +129,10 @@ async def highprice(ctx, arg):
     await ctx.send(":moneybag: The high price of " + arg.upper() + " was $" + str(current.json()['h']))
 
 @bot.command()
-async def volumedata(ctx, arg):
+async def timestamp(ctx):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    await ctx.send(":bar_chart: The volume data of " + arg.upper() + " is " + str(current.json()['v']))
-
-@bot.command()
-async def timestamp(ctx, arg):
-    current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " +
+    await ctx.send(":clock3: The time stamp is " +
                    datetime.utcfromtimestamp(current.json()['t']).strftime('%Y-%m-%d %H:%M:%S'))
-
-@bot.command()
-async def responsestatus(ctx, arg):
-    current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    await ctx.send(":bangbang: The request status of " + arg.upper() + " is " + str(current.json()['s']))
 
 @bot.command()
 async def eatmyASS(ctx):
