@@ -138,4 +138,3 @@ if 15 > peratio > 10:
     print(stocksymbol + ' is currently undervalued ie. BUY ::chart_with_upwards_trend:')
 if 10 > peratio:
     print(stocksymbol + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
-
