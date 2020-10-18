@@ -97,8 +97,8 @@ async def volumedata(ctx, arg):
 @bot.command()
 async def timestamp(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " + str(current.json()['t']))
-
+    await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " + 
+                   datetime.utcfromtimestamp(current.json()['t']).strftime('%Y-%m-%d %H:%M:%S'))
 
 @bot.command()
 async def responsestatus(ctx, arg):
