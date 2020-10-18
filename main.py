@@ -8,6 +8,7 @@ import statistics
 import requests
 
 bot = commands.Bot(command_prefix='!')
+bot.remove_command('help')
 
 @bot.command()
 async def stockprofile(ctx, *, arg):
@@ -128,10 +129,11 @@ async def highprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(":moneybag: The high price of " + arg.upper() + " was $" + str(current.json()['h']))
 
+
 @bot.command()
 async def timestamp(ctx):
-    current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    await ctx.send(":clock3: The time stamp is " +
+    current = requests.get('https://finnhub.io/api/v1/quote?symbol=AAPL&token=bto4nln48v6v7atimad0')
+    await ctx.send(":clock3: The time stamp of is " +
                    datetime.utcfromtimestamp(current.json()['t']).strftime('%Y-%m-%d %H:%M:%S'))
 
 @bot.command()
