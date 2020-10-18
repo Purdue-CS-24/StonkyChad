@@ -8,7 +8,6 @@ import statistics
 import requests
 
 bot = commands.Bot(command_prefix='!')
-bot.remove_command('help')
 
 @bot.command()
 async def stockprofile(ctx, *, arg):
@@ -60,30 +59,30 @@ async def news(ctx, *, arg):
         await ctx.send(displaymsg)
 
 @bot.command()
-async def help(ctx):
-    displaymsg = "```**Welcome to the home of **Stonky Chad**! We created a bot that when given a stock symbol " \
+async def commands(ctx):
+    displaymsg = "```Welcome to the home of Stonky Chad! We created a bot that when given a stock symbol " \
                  "(e.g googl/GOOGL for Google, amzn/AMZN for Amazon, etc.), would give information such as quotes, " \
-                 "recommendations, and profile. Commands are listed below:** \n\n" \
-                 "__**Requires an input (a stock symbol, e.g. GOOGL or AMZN and is case insensitive meaning googl is** __" \
-                 "__**okay**__):\n"\
-                "***!stockprofile***: gives a profile of the stock symbol including current, high, low, open, " \
+                 "recommendations, and profile. Commands are listed below: \n\n\n" \
+                 "Requires an input (a stock symbol, e.g. GOOGL or AMZN and is case " \
+                 "insensitive meaning googl is okay):\n\n"\
+                 "     !stockprofile: gives a profile of the stock symbol including current, high, low, open, " \
                  "and previous closing price at the current time.\n" \
-                 "***!profile***: gives a profile of the company that owns the shares, i.e. name, HQ, etc.\n" \
-                 "***!news***: pulls the first 5 articles from the past day about the given stock \n" \
-                 "***!lowprice***:  gives lowest price of the day\n" \
-                 "***!openprice***: gives open price of the day\n" \
-                 "***!previousclose***: gives previous closing price of the day\n" \
-                 "***!currentprice***: gives current price\n" \
-                 "***!highprice***: gives highest price of the day\n" \
-                 "***!timestamp***: gives current time in universal time\n" \
-                 "***!recs***: determines whether a stock is over- or undervalued, and recommends whether or not " \
+                 "     !profile: gives a profile of the company that owns the shares, i.e. name, HQ, etc.\n" \
+                 "     !news: pulls the first 5 articles from the past day about the given stock \n" \
+                 "     !lowprice:  gives lowest price of the day\n" \
+                 "     !openprice: gives open price of the day\n" \
+                 "     !previousclose: gives previous closing price of the day\n" \
+                 "     !currentprice: gives current price\n" \
+                 "     !highprice: gives highest price of the day\n" \
+                 "     !timestamp: gives current time in universal time\n" \
+                 "     !recs: determines whether a stock is over- or undervalued, and recommends whether or not " \
                  "it is a good idea to buy or sell the stock\n\n" \
-                 "__**Does not require an input and are commands we made when we were malding/bored:**__\n" \
-                 "***!eatmyASS***\n" \
-                 "***!daddychill***\n" \
-                 "***!fatyoshi***\n" \
-                 "***!sadge***\n" \
-                 "***!devs***```"
+                 "Does not require an input and are commands we made when we were malding/bored:\n\n" \
+                 "     !eatmyASS\n" \
+                 "     !daddychill\n" \
+                 "     !fatyoshi\n" \
+                 "     !sadge\n" \
+                 "     !devs```"
     await ctx.send(displaymsg)
 
 @bot.command()
@@ -128,7 +127,6 @@ async def currentprice(ctx, arg):
 async def highprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(":moneybag: The high price of " + arg.upper() + " was $" + str(current.json()['h']))
-
 
 @bot.command()
 async def timestamp(ctx):
