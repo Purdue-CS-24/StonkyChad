@@ -1,3 +1,6 @@
+from _datetime import datetime
+import json
+
 import discord
 import config
 from discord.ext import commands
@@ -8,14 +11,15 @@ bot = commands.Bot(command_prefix='!')
 
 @bot.command()
 async def stockprofile(ctx, *, arg):
-    current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+    current = requests.get("https://finnhub.io/api/v1/quote?symbol="+ arg.upper() +"&token=bto4nln48v6v7atimad0")
 
-    displaymsg = "The current Price of" + arg.upper() + " is $" + current.json()['c'] + "\n" + \
-                 "The high price of " + arg.upper() + " was $" + current.json()['h'] + "\n" + \
-                 "The low price of " + arg.upper() + " was $" + current.json()['l'] + "\n" + \
-                 "The open price of " + arg.upper() + " is $" + current.json()['o'] + "\n" + \
-                 "The previous closing price of " + arg.upper() + " was $" + current.json()['pc'] + "\n" + \
-                 "The time stamp of " + arg.upper() + " is " + current.json()['t']
+    displaymsg = "Current Price: " + arg.upper() + " is $" + str(current.json()['c']) + "\n" + \
+                 "High Price: " + arg.upper() + " was $" + str(current.json()['h']) + "\n" + \
+                 "Low Price: " + arg.upper() + " was $" + str(current.json()['l']) + "\n" + \
+                 "Open Price: " + arg.upper() + " is $" + str(current.json()['o']) + "\n" + \
+                 "Previous Closing Price: " + arg.upper() + " was $" + str(current.json()['pc']) + "\n" + \
+                 "Time Stamp: " + arg.upper() + " is " + \
+                 datetime.utcfromtimestamp(current.json()['t']).strftime('%Y-%m-%d %H:%M:%S') + " in Universal Time\n"
 
     await ctx.send(displaymsg)
 
@@ -28,9 +32,11 @@ async def stockprofile(ctx, *, arg):
     # await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " + str(current.json()['t']))
     # await ctx.send(":bangbang: The request status of " + arg.upper() + " is " + str(current.json()['s']))
 
+
 @bot.command()
 async def companyprofile(ctx, *, arg):
-    profile = requests.get('https://finnhub.io/api/v1//stock/profile2?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+    profile = requests.get(
+        'https://finnhub.io/api/v1//stock/profile2?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
 
     displaymsg = "The name of the company of " + arg.upper() + " is " + str(profile.json()['name']) + "\n" + \
                  "The country of company's headquarter is " + str(profile.json()['country']) + "\n" + \
@@ -39,7 +45,8 @@ async def companyprofile(ctx, *, arg):
                  "The company symbol/ticker as used on the listed exchange is " + str(profile.json()['ticker']) + "\n" + \
                  "The IPO date of the company is " + str(profile.json()['ipo']) + "\n" + \
                  "The market capitalization of the company is " + str(profile.json()['marketCapitalization']) + "\n" + \
-                 "The number of outstanding shares of the company is " + str(profile.json()['shareOutstanding']) + "\n" + \
+                 "The number of outstanding shares of the company is " + str(
+        profile.json()['shareOutstanding']) + "\n" + \
                  "The company phone number is " + str(profile.json()['phone']) + "\n" + \
                  "The company website is " + str(profile.json()['weburl']) + "\n" + \
                  "The industry classification of the company is " + str(profile.json()['finnhubIndustry']) + "\n"
@@ -48,13 +55,25 @@ async def companyprofile(ctx, *, arg):
 
 @bot.command()
 async def companynews(ctx, *, arg):
-    news = "GET request here"
+    news = requests.get("https://finnhub.io/api/v1/company-news?symbol=" + arg.upper() + "&from=2020-01-01&to=2020-10-17&token=bto4nln48v6v7atimad0")
 
-    displaymsg = "Source" + ": " + "Headline" + "\n" + \
-                 "Summary" + ": " + "\n" + \
-                 "Full report at " + "url" + "\n"
+    for article in len(range(news.json)):
+        displaymsg = article.json()['source'] + ": " + article.json()['headline'] + "\n" + \
+                     "Summary" + ": " + article.json()['summary'] + "\n" + \
+                     "Full report at " + article.json()['url'] + "\n"
+        await ctx.send(displaymsg)
 
-    await ctx.send(displaymsg)
+@bot.command()
+async def sadge(ctx):
+    await ctx.send('do you ever just \n https://tenor.com/view/sadge-sad-xqc-sad-pepe-sad-feelsbad-gif-17782875')
+
+@bot.command()
+async def fatyoshi(ctx):
+    await ctx.send('WAHOO https://i.redd.it/waom7vm9t0z21.jpg')
+
+@bot.command()
+async def papakedar(ctx):
+    await ctx.send("whos ur daddy \n" + "https://media.discordapp.net/attachments/758822857136144385/767180587072094208/deepfried_1602980477191.png")
 
 @bot.command()
 async def lowprice(ctx, arg):
@@ -89,7 +108,8 @@ async def volumedata(ctx, arg):
 @bot.command()
 async def timestamp(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
-    await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " + str(current.json()['t']))
+    await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " +
+                   datetime.utcfromtimestamp(current.json()['t']).strftime('%Y-%m-%d %H:%M:%S'))
 
 @bot.command()
 async def responsestatus(ctx, arg):
@@ -130,7 +150,7 @@ async def recs(ctx, arg):
     q2earn = q2e.json()
     q3earn = q3e.json()
     q4earn = q4e.json()
-    
+
     currentc = current.json()['c']
 
     q1actual = q1earn['earningsCalendar'][0]['revenueActual']
@@ -162,19 +182,14 @@ async def recs(ctx, arg):
     peratio = currentc / epsactualavg
 
     if peratio > 25:
-        await ctx.send(arg.upper() + ' is currently VERY overvalued ie. STRONG SELL :muscle:')
-    if 25 > peratio > 20:
-        await ctx.send(arg.upper() + ' is currently overvalued ie. SELL :chart_with_downwards_trend:')
-    if 20 > peratio > 15:
-        await ctx.send(arg.upper() + ' is currently fairly valued ie. HOLD :pause_button:')
-    if 15 > peratio > 10:
-        await ctx.send(arg.upper() + ' is currently undervalued ie. BUY :chart_with_upwards_trend:')
-    if 10 > peratio:
-        await ctx.send(arg.upper() + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
+        await ctx.send(arg.upper() + ' is currently overvalued ie. Strong Sell')
+    if 25 > peratio > 10:
+        await ctx.send(arg.upper() + ' is currently fairly valued ie. Hold')
+    if peratio < 10:
+        await ctx.send(arg.upper() + ' is currently undervalued ie. Strong Buy')
 
-@bot.command()
-async def papakedar(ctx):
-    await ctx.send('whos ur daddy + https://media.discordapp.net/attachments/758822857136144385/767180587072094208/deepfried_1602980477191.png')
+
+
 
 
 @bot.event
