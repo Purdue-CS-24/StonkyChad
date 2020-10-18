@@ -67,6 +67,10 @@ async def companyprofile(ctx, *, arg):
     await ctx.send(displaymsg)
 
 @bot.command()
+async def fatyoshi(ctx):
+    await ctx.send('WAHOO + https://i.redd.it/waom7vm9t0z21.jpg')
+
+@bot.command()
 async def lowprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(current.json()['l']))
