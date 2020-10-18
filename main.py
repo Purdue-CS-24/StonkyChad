@@ -34,14 +34,14 @@ async def stockprofile(ctx, *, arg):
 
 
 @bot.command()
-async def companyprofile(ctx, *, arg):
+async def profile(ctx, *, arg):
     profile = requests.get(
         'https://finnhub.io/api/v1//stock/profile2?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
 
-    displaymsg = "Name: " + arg.upper() + " is " + str(profile.json()['name']) + "\n" + \
+    displaymsg = "Name: " + str(profile.json()['name']) + "\n" + \
                  "Classification: " + str(profile.json()['finnhubIndustry']) + "\n" + \
                  "HQ: " + str(profile.json()['country']) + "\n" + \
-                 "Current " + str(profile.json()['currency']) + "\n" + \
+                 "Currency: " + str(profile.json()['currency']) + "\n" + \
                  "Exchange: " + str(profile.json()['exchange']) + "\n" + \
                  "Symbol/Ticker: " + str(profile.json()['ticker']) + "\n" + \
                  "IPO " + str(profile.json()['ipo']) + "\n" + \
@@ -197,9 +197,9 @@ async def recs(ctx, arg):
     if 10 > peratio:
         await ctx.send(arg.upper() + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
 
-
-
-
+@bot.command()
+async def daddychill(ctx):
+    await ctx.send("YO CHILLLLLL " + "https://tenor.com/view/chill-daddy-take-it-easy-calm-down-gif-13696124")
 
 @bot.event
 async def on_ready():
