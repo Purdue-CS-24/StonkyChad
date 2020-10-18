@@ -10,12 +10,12 @@ bot = commands.Bot(command_prefix='!')
 async def stockprofile(ctx, *, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
 
-    displaymsg = "The current Price of" + arg.upper() + " is $" + str(current.json()['c']) + "\n" + \
-                 "The high price of " + arg.upper() + " was $" + str(current.json()['h']) + "\n" + \
-                 "The low price of " + arg.upper() + " was $" + str(current.json()['l']) + "\n" + \
-                 "The open price of " + arg.upper() + " is $" + str(current.json()['o']) + "\n" + \
-                 "The previous closing price of " + arg.upper() + " was $" + str(current.json()['pc']) + "\n" + \
-                 "The time stamp of " + arg.upper() + " is " + str(current.json()['t'])
+    displaymsg = "The current Price of" + arg.upper() + " is $" + current.json()['c'] + "\n" + \
+                 "The high price of " + arg.upper() + " was $" + current.json()['h'] + "\n" + \
+                 "The low price of " + arg.upper() + " was $" + current.json()['l'] + "\n" + \
+                 "The open price of " + arg.upper() + " is $" + current.json()['o'] + "\n" + \
+                 "The previous closing price of " + arg.upper() + " was $" + current.json()['pc'] + "\n" + \
+                 "The time stamp of " + arg.upper() + " is " + current.json()['t']
 
     await ctx.send(displaymsg)
 
@@ -47,6 +47,7 @@ async def companyprofile(ctx, *, arg):
     await ctx.send(displaymsg)
 
 @bot.command()
+<<<<<<< HEAD
 async def companyprofile(ctx, *, arg):
     profile = requests.get(
         'https://finnhub.io/api/v1//stock/profile2?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
@@ -71,6 +72,8 @@ async def fatyoshi(ctx):
     await ctx.send('WAHOO + https://i.redd.it/waom7vm9t0z21.jpg')
 
 @bot.command()
+=======
+>>>>>>> main
 async def lowprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(current.json()['l']))
