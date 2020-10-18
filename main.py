@@ -182,6 +182,11 @@ async def recs(ctx, arg):
     if 10 > peratio:
         await ctx.send(arg.upper() + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
 
+@bot.command()
+async def papakedar(ctx):
+    await ctx.send('whos ur daddy + https://media.discordapp.net/attachments/758822857136144385/767180587072094208/deepfried_1602980477191.png')
+
+
 @bot.event
 async def on_ready():
     print('Logged in as')
