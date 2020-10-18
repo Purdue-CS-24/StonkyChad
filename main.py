@@ -6,7 +6,6 @@ import requests
 
 bot = commands.Bot(command_prefix='!')
 
-
 @bot.command()
 async def stockprofile(ctx, *, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
@@ -29,6 +28,23 @@ async def stockprofile(ctx, *, arg):
     # await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " + str(current.json()['t']))
     # await ctx.send(":bangbang: The request status of " + arg.upper() + " is " + str(current.json()['s']))
 
+@bot.command()
+async def companyprofile(ctx, *, arg):
+    profile = requests.get('https://finnhub.io/api/v1//stock/profile2?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
+
+    displaymsg = "The name of the company of " + arg.upper() + " is " + str(profile.json()['name']) + "\n" + \
+                 "The country of company's headquarter is " + str(profile.json()['country']) + "\n" + \
+                 "The currency used in company filings is " + str(profile.json()['currency']) + "\n" + \
+                 "The listed exchange is " + str(profile.json()['exchange']) + "\n" + \
+                 "The company symbol/ticker as used on the listed exchange is " + str(profile.json()['ticker']) + "\n" + \
+                 "The IPO date of the company is " + str(profile.json()['ipo']) + "\n" + \
+                 "The market capitalization of the company is " + str(profile.json()['marketCapitalization']) + "\n" + \
+                 "The number of outstanding shares of the company is " + str(profile.json()['shareOutstanding']) + "\n" + \
+                 "The company phone number is " + str(profile.json()['phone']) + "\n" + \
+                 "The company website is " + str(profile.json()['weburl']) + "\n" + \
+                 "The industry classification of the company is " + str(profile.json()['finnhubIndustry']) + "\n"
+
+    await ctx.send(displaymsg)
 
 @bot.command()
 async def companyprofile(ctx, *, arg):
@@ -55,56 +71,48 @@ async def lowprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(current.json()['l']))
 
-
 @bot.command()
 async def openprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(':moneybag: The open price of ' + arg.upper() + ' is $' + str(current.json()['o']))
-
 
 @bot.command()
 async def previousclose(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(":moneybag: The previous closing price of " + arg.upper() + " was $" + str(current.json()['pc']))
 
-
 @bot.command()
 async def currentprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(':moneybag: The current Price of ' + arg.upper() + ' is $' + str(current.json()['c']))
-
 
 @bot.command()
 async def highprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(":moneybag: The high price of " + arg.upper() + " was $" + str(current.json()['h']))
 
-
 @bot.command()
 async def volumedata(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(":bar_chart: The volume data of " + arg.upper() + " is " + str(current.json()['v']))
-
 
 @bot.command()
 async def timestamp(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(":clock3: The time stamp of " + arg.upper() + " is " + str(current.json()['t']))
 
-
 @bot.command()
 async def responsestatus(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(":bangbang: The request status of " + arg.upper() + " is " + str(current.json()['s']))
 
-
 @bot.command()
 async def eatmyASS(ctx):
     await ctx.send('i dont have a mouth')
 
-
 @bot.command()
 async def recs(ctx, arg):
+
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     q1i = requests.get(
         'https://finnhub.io/api/v1/stock/candle?symbol=' + arg.upper() + '&resolution=1&from=1577836800&to=1585612800&token=bto4nln48v6v7atimad0')
@@ -132,7 +140,7 @@ async def recs(ctx, arg):
     q2earn = q2e.json()
     q3earn = q3e.json()
     q4earn = q4e.json()
-
+    
     currentc = current.json()['c']
 
     q1actual = q1earn['earningsCalendar'][0]['revenueActual']
@@ -174,11 +182,9 @@ async def recs(ctx, arg):
     if 10 > peratio:
         await ctx.send(arg.upper() + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
 
-
 @bot.command()
 async def papakedar(ctx):
-    await ctx.send(
-        'whos ur daddy + https://media.discordapp.net/attachments/758822857136144385/767180587072094208/deepfried_1602980477191.png')
+    await ctx.send('whos ur daddy + https://media.discordapp.net/attachments/758822857136144385/767180587072094208/deepfried_1602980477191.png')
 
 
 @bot.event
@@ -187,6 +193,5 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-
 
 bot.run(config.token)
