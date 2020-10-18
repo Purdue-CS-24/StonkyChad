@@ -67,6 +67,16 @@ async def companyprofile(ctx, *, arg):
     await ctx.send(displaymsg)
 
 @bot.command()
+async def companynews(ctx, *, arg):
+    news = "GET request here"
+
+    displaymsg = "Source" + ": " + "Headline" + "\n" + \
+                 "Summary" + ": " + "\n" + \
+                 "Full report at " + "url" + "\n"
+
+    await ctx.send(displaymsg)
+
+@bot.command()
 async def lowprice(ctx, arg):
     current = requests.get('https://finnhub.io/api/v1/quote?symbol=' + arg.upper() + '&token=bto4nln48v6v7atimad0')
     await ctx.send(':moneybag: The low price of ' + arg.upper() + ' was $' + str(current.json()['l']))
