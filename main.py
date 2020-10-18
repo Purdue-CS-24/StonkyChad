@@ -52,7 +52,7 @@ async def companyprofile(ctx, *, arg):
 
 @bot.command()
 async def fatyoshi(ctx):
-    await ctx.send('WAHOO + https://i.redd.it/waom7vm9t0z21.jpg')
+    await ctx.send('WAHOO \n https://i.redd.it/waom7vm9t0z21.jpg')
 
 @bot.command()
 async def sadge(ctx):
