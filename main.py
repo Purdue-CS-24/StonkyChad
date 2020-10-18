@@ -54,13 +54,18 @@ async def companyprofile(ctx, *, arg):
     await ctx.send(displaymsg)
 
 @bot.command()
-async def companynews(ctx, *, arg):
-    news = requests.get("https://finnhub.io/api/v1/company-news?symbol=" + arg.upper() + "&from=2020-01-01&to=2020-10-17&token=bto4nln48v6v7atimad0")
+async def news(ctx, *, arg):
+    news = requests.get("https://finnhub.io/api/v1/company-news?symbol=" + arg.upper() + "&from=2020-10-17&to=2020-10-17&token=bto4nln48v6v7atimad0")
+    limit = 5
 
-    for article in len(range(news.json)):
-        displaymsg = article.json()['source'] + ": " + article.json()['headline'] + "\n" + \
-                     "Summary" + ": " + article.json()['summary'] + "\n" + \
-                     "Full report at " + article.json()['url'] + "\n"
+    index = 0
+    for article in news.json():
+        displaymsg = article.get('source').upper() + ": " + article.get('headline') + "\n" + \
+                     "Summary" + ": " + article.get('summary') + "\n" + \
+                     "Full report at " + article.get('url') + "\n"
+        index += 1
+        if index == limit:
+            break
         await ctx.send(displaymsg)
 
 @bot.command()
@@ -182,11 +187,15 @@ async def recs(ctx, arg):
     peratio = currentc / epsactualavg
 
     if peratio > 25:
-        await ctx.send(arg.upper() + ' is currently overvalued ie. Strong Sell')
-    if 25 > peratio > 10:
-        await ctx.send(arg.upper() + ' is currently fairly valued ie. Hold')
-    if peratio < 10:
-        await ctx.send(arg.upper() + ' is currently undervalued ie. Strong Buy')
+        await ctx.send(arg.upper() + ' is currently VERY overvalued ie. STRONG SELL :muscle:')
+    if 25 > peratio > 20:
+        await ctx.send(arg.upper() + ' is currently overvalued ie. SELL :chart_with_downwards_trend:')
+    if 20 > peratio > 15:
+        await ctx.send(arg.upper() + ' is currently fairly valued ie. HOLD :pause_button:')
+    if 15 > peratio > 10:
+        await ctx.send(arg.upper() + ' is currently undervalued ie. BUY :chart_with_upwards_trend:')
+    if 10 > peratio:
+        await ctx.send(arg.upper() + ' is currently VERY undervalued ie. STRONG BUY :muscle:')
 
 
 
