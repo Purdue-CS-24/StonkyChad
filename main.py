@@ -54,6 +54,9 @@ async def companyprofile(ctx, *, arg):
 async def fatyoshi(ctx):
     await ctx.send('WAHOO + https://i.redd.it/waom7vm9t0z21.jpg')
 
+@bot.command()
+async def sadge(ctx):
+    await ctx.send('do you ever just \n https://tenor.com/view/sadge-sad-xqc-sad-pepe-sad-feelsbad-gif-17782875')
 
 @bot.command()
 async def lowprice(ctx, arg):
